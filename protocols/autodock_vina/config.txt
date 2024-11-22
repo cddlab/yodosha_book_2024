@@ -1,0 +1,9 @@
+center_x = 2.94935341
+center_y = -10.73860162
+center_z = -7.62855921
+size_x = 18
+size_y = 10
+size_z = 15
+cpu = 8
+exhaustiveness = 8
+num_modes = 8

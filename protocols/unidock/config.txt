@@ -1,0 +1,13 @@
+center_x = 2.94935341
+center_y = -10.73860162
+center_z = -7.62855921
+size_x = 18
+size_y = 10
+size_z = 15
+num_modes = 8
+scoring = vina
+search_mode = detail
+exhaustiveness = 512
+max_step = 40
+refine_step = 3
+seed = 5

@@ -6,6 +6,7 @@ from typing import List
 
 import pandas as pd
 
+import meeko
 from meeko import MoleculePreparation, PDBQTWriterLegacy
 from rdkit import Chem
 from rdkit.Chem import AllChem
@@ -38,10 +39,10 @@ def main() -> None:
                 preparator = MoleculePreparation(flexible_amides=True)
                 mol_setups: List[meeko.molsetup.RDKitMoleculeSetup] = preparator.prepare(m_h)
                 ligand_pdbqt_string, is_ok, error_msg = PDBQTWriterLegacy.write_string(mol_setups[0])
-                if is_ok:
-                    ligand_pdbqt_string = preparator.write_pdbqt_string()
-                else:
+                if not is_ok:
+                    # PDBQT化に失敗した分子はファイルを書かずにスキップする
                     print(error_msg)
+                    continue
                 lig_input = os.path.join(args.out_dir, f"{c}.pdbqt")
 
                 with open(lig_input, "w") as f:

@@ -107,6 +107,10 @@ results_diffdock/
 │   └── rank9_confidence-1.92.sdf
 ```
 
+注：confidence score は**大きいほど良い**指標（値が大きいポーズほど確信度が高い）.
+ファイル名には負値のときのみ `-` が入る（例：`rank1_confidence0.63.sdf` は +0.63、
+`rank1_confidence-0.63.sdf` は −0.63）.解析時は符号を落とさないこと.
+
 ### 解析例
 PoseBustersによる評価を実行する場合:
 ```

@@ -9,6 +9,7 @@ from tempfile import TemporaryDirectory
 
 import pandas as pd
 
+import meeko
 from meeko import MoleculePreparation, PDBQTMolecule, PDBQTWriterLegacy
 from rdkit import Chem
 from rdkit.Chem import AllChem

@@ -1,4 +1,5 @@
 import argparse
+import re
 import warnings
 
 from pathlib import Path
@@ -59,7 +60,8 @@ def run_posebusters(
         'internal_energy',
         'all_pass'
     ]
-    int_col_dict = {c: 'i4' for c in int_cols}
+    # posebustersのバージョンによって出力列が異なるため、実在する列のみ変換する
+    int_col_dict = {c: 'i4' for c in int_cols if c in bust_df.columns}
     bust_df = bust_df.astype(int_col_dict)
     del bust_df["molecule"]
     return bust_df
@@ -69,11 +71,10 @@ def get_pose_properties(sdf_file_path: str | Path) -> Dict[str, int | float | No
     f_stem = sdf_file_path.stem
     if len(f_stem.split("_")) > 1:
         rank = int(f_stem.split("_")[0].replace("rank", ""))
-        confidence = 100
-        if "confidence-" in f_stem.split("_")[1]:
-            confidence = float(f_stem.split("_")[1].replace("confidence-", ""))
-        else:
-            confidence = float(f_stem.split("_")[1].replace("confidence", ""))
+        # ファイル名は rank{N}_confidence{値}.sdf で、負値のときのみ "-" が入る。
+        # 符号を落とさないよう正規表現で抽出する（confidenceは大きいほど良い指標）
+        match = re.search(r"confidence(-?[\d.]+)$", f_stem)
+        confidence = float(match.group(1)) if match is not None else None
 
         m = Chem.SDMolSupplier(str(sdf_file_path))[0]
         if m is not None:

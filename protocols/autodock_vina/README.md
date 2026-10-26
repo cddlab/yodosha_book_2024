@@ -58,17 +58,17 @@ mamba activate vinaenv
 mamba install rdkit　meeko tqdm pandas
 ```
 
-#### poetryを使用する場合
+#### uvを使用する場合
 ```bash
 # プロジェクトディレクトリで実行
 cd protocols/autodock_vina
-poetry install
+uv sync
 
 # または新規プロジェクトを作成
 mkdir vina_experiments
 cd vina_experiments
-poetry init  # Pythonのバージョンやライセンスなどを設定
-poetry add rdkit meeko tqdm pandas
+uv init  # pyproject.tomlを生成 (Pythonのバージョンなどは生成後に編集可能)
+uv add rdkit meeko tqdm pandas
 ```
 
 
@@ -124,7 +124,7 @@ print(np.max(grid_sizes, axis=0))
 実行例:
 ```bash
 DATA_DIR="../../data"
-poetry run python get_ligand_coordinate.py $DATA_DIR/lig_1.sdf $DATA_DIR/lig_2.sdf $DATA_DIR/lig_3.sdf
+uv run python get_ligand_coordinate.py $DATA_DIR/lig_1.sdf $DATA_DIR/lig_2.sdf $DATA_DIR/lig_3.sdf
 # center coordinates
 # [  2.94935341 -10.73860162  -7.62855921]
 # ligand size
@@ -201,7 +201,7 @@ df.loc[:, ["Znumber", "smiles"]].to_csv("/path/to/csv_file", index=False)
 
 FDA化合物の前処理:
 ```bash
-poetry run python preprocessing.py  # 結果は`enamine_fda_processed.csv`として保存
+uv run python preprocessing.py  # 結果は`enamine_fda_processed.csv`として保存
 ```
 IPAB化合物に同様を前処理を実施した結果は`ipab_processed.csv`として保存.
 
@@ -210,7 +210,7 @@ IPAB化合物のドッキング：
 ```bash
 DATA_DIR="../../data"
 RESULTS_DIR="results_ipab"
-poetry run python run_docking_multiple_mols.py \
+uv run python run_docking_multiple_mols.py \
   -c config.txt \
   -i $DATA_DIR/ipab_processed.csv \
   -p $DATA_DIR/receptor.pdbqt \

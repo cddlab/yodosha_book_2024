@@ -44,9 +44,8 @@ tar -zxf ADFRsuite_x86_64Darwin_1.0.tar.gz
 cd ADFRsuite_x86_64Darwin_1.0
 # セキュリティの設定でインストールが止まる場合はシステム設定の「プライバシーとセキュリティ」に進んで"このまま許可"を選ぶ
 bash install.sh
-ADFR_ROOT="~/opt/mgltools_1.5.7_MacOS-X"
-alias prepare_receptor="$ADFR_ROOT/bin/prepare_receptor
-AutoDockTools/Utilities24/prepare_receptor4.py"
+ADFR_ROOT="~/opt/ADFRsuite_x86_64Darwin_1.0"
+alias prepare_receptor="$ADFR_ROOT/bin/prepare_receptor"
 ```
 
 ### Python Packages
@@ -192,7 +191,7 @@ def standardize_mol(mol: Chem.Mol) -> Chem.Mol:
         print(e)
         return None
 df["StMol"] = df["ROMol"].apply(lambda x: standardize_mol(x))
-df["smiles"] = df["StROMol"].apply(lambda x: Chem.MolToSmiles(x))
+df["smiles"] = df["StMol"].apply(lambda x: Chem.MolToSmiles(x))
 # 前処理でvalidな分子が出てない場合は削除
 df = df.dropna(subset="smiles")
 df.loc[:, ["Znumber", "smiles"]].to_csv("/path/to/csv_file", index=False)

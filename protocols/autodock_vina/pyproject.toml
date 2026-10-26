@@ -1,26 +1,21 @@
-[tool.poetry]
-name = "yodosha-docking-private"
+[project]
+name = "yodosha-docking"
 version = "0.1.0"
 description = "docking protocols for yodosha book"
-authors = ["Kentaro Rikimaru<rkristall19@gmail.com>"]
+authors = [{ name = "Kentaro Rikimaru", email = "rikimaru.k.c165@m.isct.ac.jp" }]
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.10"
-rdkit = "^2023.9.6"
-scipy = "^1.13.0"
-numpy = "^1.26.4"
-pandas = "2.0.0"
-matplotlib = "^3.8.4"
-jupyter = "^1.0.0"
-scikit-learn = "^1.4.2"
-meeko = "^0.5.0"
-tqdm = "^4.66.2"
-toml = "^0.10.2"
-py3dmol = "^2.1.0"
-posebusters = "^0.2.13"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires-python = ">=3.10"
+dependencies = [
+    "rdkit>=2023.9.6,<2024",
+    "scipy>=1.13.0,<2",
+    "numpy>=1.26.4,<2",
+    "pandas==2.0.0",
+    "matplotlib>=3.8.4,<4",
+    "jupyter>=1.0.0,<2",
+    "scikit-learn>=1.4.2,<2",
+    "meeko>=0.5.0,<0.6",
+    "tqdm>=4.66.2,<5",
+    "toml>=0.10.2,<0.11",
+    "py3dmol>=2.1.0,<3",
+    "posebusters>=0.2.13,<0.3",
+]

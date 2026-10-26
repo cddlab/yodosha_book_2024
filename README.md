@@ -16,7 +16,6 @@
 └── protocols
     ├── autodock_vina
     ├── diffdock
-    ├── karmadock
     └── unidock
 ```
 
@@ -39,5 +38,4 @@
 ## Protocols
 - [AutoDock Vina](protocols/autodock_vina/README.md)
 - [DiffDock](protocols/diffdock/README.md)
-- [KarmaDock](protocols/karmadock/README.md)
 - [Uni-Dock](protocols/unidock/README.md)

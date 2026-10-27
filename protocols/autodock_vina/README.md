@@ -52,7 +52,7 @@ alias prepare_receptor="$ADFR_ROOT/bin/prepare_receptor"
 
 #### mamba (conda)を使用する場合
 ```bash
-mamba create -n vinaenv python=3.10
+mamba create -n vinaenv python=3.12
 mamba activate vinaenv
 mamba install rdkit　meeko tqdm pandas
 ```
